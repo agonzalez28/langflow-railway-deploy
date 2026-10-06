@@ -20,6 +20,8 @@ USER root
 
 # Install the Pinecone client used by the custom component
 RUN pip uninstall -y pinecone-client; pip install --no-cache-dir pinecone
+#Copy custom components into image
+COPY custom_components /app/custom_components
 
 # Langflow's workers spawn stdio MCP servers (the image ships Node so components
 # can `npx` them). A worker killed mid-flight reparents those onto PID 1, and the
