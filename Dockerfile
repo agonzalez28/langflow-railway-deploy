@@ -18,6 +18,9 @@ FROM langflowai/langflow:latest
 
 USER root
 
+# Install the Pinecone client used by the custom component
+RUN pip install --no-cache-dir pinecone-client
+
 # Langflow's workers spawn stdio MCP servers (the image ships Node so components
 # can `npx` them). A worker killed mid-flight reparents those onto PID 1, and the
 # process that ends up there is CPython, which reaps nothing.
